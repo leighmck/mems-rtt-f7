@@ -34,7 +34,7 @@
 
 #include <cstdlib>
 #include <sys/types.h>
-#include "diag/Trace.h"
+#include "rtt/SEGGER_RTT.h"
 
 // ----------------------------------------------------------------------------
 
@@ -47,7 +47,7 @@ namespace __gnu_cxx
   void
   __verbose_terminate_handler()
   {
-    trace_puts(__func__);
+    SEGGER_RTT_printf(0, __func__);
     abort();
   }
 }
@@ -63,7 +63,7 @@ extern "C"
   void
   __cxa_pure_virtual()
   {
-    trace_puts(__func__);
+    SEGGER_RTT_printf(0, __func__);
     abort();
   }
 }

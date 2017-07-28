@@ -30,7 +30,7 @@
 #include "cortexm/ExceptionHandlers.h"
 #include "cmsis_device.h"
 #include "arm/semihosting.h"
-#include "diag/Trace.h"
+#include "rtt/SEGGER_RTT.h"
 #include <string.h>
 
 // ----------------------------------------------------------------------------

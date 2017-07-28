@@ -29,7 +29,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-#include "diag/Trace.h"
+#include "rtt/SEGGER_RTT.h"
 
 // ----------------------------------------------------------------------------
 
@@ -38,7 +38,7 @@ __attribute__((noreturn))
 __assert_func (const char *file, int line, const char *func,
                const char *failedexpr)
 {
-  trace_printf ("assertion \"%s\" failed: file \"%s\", line %d%s%s\n",
+  SEGGER_RTT_printf (0, "assertion \"%s\" failed: file \"%s\", line %d%s%s\n",
                 failedexpr, file, line, func ? ", function: " : "",
                 func ? func : "");
   abort ();
@@ -67,7 +67,7 @@ void
 __attribute__((noreturn, weak))
 assert_failed (uint8_t* file, uint32_t line)
 {
-  trace_printf ("assert_param() failed: file \"%s\", line %d\n", file, line);
+  SEGGER_RTT_printf (0, "assert_param() failed: file \"%s\", line %d\n", file, line);
   abort ();
   /* NOTREACHED */
 }

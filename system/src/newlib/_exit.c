@@ -28,7 +28,7 @@
 // ----------------------------------------------------------------------------
 
 #include <stdlib.h>
-#include "diag/Trace.h"
+#include "rtt/SEGGER_RTT.h"
 
 // ----------------------------------------------------------------------------
 
@@ -73,7 +73,7 @@ void
 __attribute__((weak,noreturn))
 abort(void)
 {
-  trace_puts("abort(), exiting...");
+  SEGGER_RTT_printf(0, "abort(), exiting...");
 
   _exit(1);
 }

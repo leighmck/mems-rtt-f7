@@ -29,7 +29,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "diag/Trace.h"
+#include "rtt/SEGGER_RTT.h"
 
 #include "Timer.h"
 #include "BlinkLed.h"
@@ -131,11 +131,11 @@ int
 main(int argc, char* argv[])
 {
   // Send a greeting to the trace device (skipped on Release).
-  trace_puts("Hello ARM World!");
+  SEGGER_RTT_printf (0, "Hello ARM World!");
 
   // At this stage the system clock should have already been configured
   // at high speed.
-  trace_printf("System clock: %u Hz\n", SystemCoreClock);
+  SEGGER_RTT_printf (0, "System clock: %u Hz\n", SystemCoreClock);
 
   Timer timer;
   timer.start ();
@@ -164,7 +164,7 @@ main(int argc, char* argv[])
   timer.sleep (BLINK_OFF_TICKS);
 
   ++seconds;
-  trace_printf ("Second %u\n", seconds);
+  SEGGER_RTT_printf (0, "Second %u\n", seconds);
 
   if ((sizeof(blinkLeds) / sizeof(blinkLeds[0])) > 1)
     {
@@ -178,7 +178,7 @@ main(int argc, char* argv[])
           timer.sleep (BLINK_OFF_TICKS);
 
           ++seconds;
-          trace_printf ("Second %u\n", seconds);
+          SEGGER_RTT_printf (0, "Second %u\n", seconds);
         }
 
       // Blink binary.
@@ -196,7 +196,7 @@ main(int argc, char* argv[])
           timer.sleep (Timer::FREQUENCY_HZ);
 
           ++seconds;
-          trace_printf ("Second %u\n", seconds);
+          SEGGER_RTT_printf (0, "Second %u\n", seconds);
         }
       // Infinite loop, never return.
     }
@@ -211,7 +211,7 @@ main(int argc, char* argv[])
           timer.sleep (BLINK_OFF_TICKS);
 
           ++seconds;
-          trace_printf ("Second %u\n", seconds);
+          SEGGER_RTT_printf (0, "Second %u\n", seconds);
         }
       // Infinite loop, never return.
     }
